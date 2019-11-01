@@ -1,9 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {render, cleanup, waitForElement} from '@testing-library/react'
 import App from './App';
+import PlayerCard from './Components/PlayerCard'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+test('renders without crashing', () => {
+  render(<App />);
 });
+
+test('it renders person name', ()=> {  
+    const {getByTestId} = render(<PlayerCard/>)
+    getByTestId(/nameprint/i)
+})
+
+test('it renders person country', ()=> {  
+  const {getByTestId} = render(<PlayerCard/>)
+  getByTestId(/countryprint/i)
+})
+
+test('it renders person searches', ()=> {  
+  const {getByTestId} = render(<PlayerCard/>)
+  getByTestId(/searchesprint/i)
+})
